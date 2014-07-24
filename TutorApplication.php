@@ -8,7 +8,7 @@
         <meta name="author" content="">
         <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-        <title>Professor</title>
+        <title>Tutor Application</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -25,10 +25,13 @@
 <div id='fg_membersite'>
 <form id='register' action='<?php echo placeholder->yo; ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
-<legend>Register</legend>
+<legend>Tutor Application</legend>
 
-
-
+<div class='container'>
+    <label for='gtId' >GTiD*: </label><br/>
+    <input type='number' name='gtId' id='gtId' value='<?php echo htmlentities($_POST[$firstName]) ?>' /><br/>
+    <span id='register_name_errorloc' class='error'></span>
+</div>
 <div class='container'>
     <label for='firstName' >First Name*: </label><br/>
     <input type='text' name='firstName' id='firstName' value='<?php echo htmlentities($_POST[$firstName]) ?>' maxlength="50" /><br/>
@@ -71,7 +74,7 @@
             <th width="17%">Wednesday</th>
             <th width="17%">Thursday</th>
             <th width="17%">Friday</th>
-        </tr>
+    </tr>
     <tbody>
     <th width="17%">9am</th>
     <th width="17%"><input type="checkbox" name="monday9AM" value="1"></th>
