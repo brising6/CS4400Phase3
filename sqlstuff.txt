@@ -1,0 +1,145 @@
+$thisSem = read("CurrentSemester");
+
+function findGTID (sName) {
+	return mysql_query ("SELECT GT_ID FROM Student
+						WHERE Name = sName");
+}
+
+
+// Login
+
+$GTID = read("GT_ID");
+$UserPassword = read("Password");
+
+$all = mysql_query ("SELECT * FROM User
+						WHERE GT_ID = $GTID
+						AND Password= $UserPassword");
+$rows = mysql_num_rows($all);
+if($rows>0){
+	login();
+}
+else{
+	echo "Incorrect GT_ID or Password";
+}
+
+
+// Search Tutor
+
+$CKey = read("CourseKey");
+$AvDay = read("AvailableDay");
+$AvTime = read("AvailableTime");
+
+SELECT TutorGT_ID FROM TutorsCourse
+WHERE CourseKey = CKey AND 
+EXISTS (SELECT TutorGT_ID FROM Tutor INNER JOIN TutorTimeSlots
+		WHERE Weekday = AvDay AND Time = AvTime)
+
+
+
+// Schedule Tutor
+
+$Key = read("SlotKey");
+
+DELETE FROM TutorTimeSlot
+WHERE SlotKey = Key
+
+DELETE FROM HireTutor
+WHERE SlotKey = Key
+
+
+
+// Tutor Eval by Student
+
+$NumEv = read("NumberEvaluation");
+$DesEv = read("DescriptionEvaluation");
+$TutName = read("TutorName");
+$CKey = read("Course");
+$TutGTID = findGTID(TutName);
+
+INSERT INTO Rating (UndergradGT_ID, TutorGT_ID, Num_Evaluation, Desc_Evaluation, Semester);
+VALUES (GTID, TutGTID, NumEv, DesEv, thisSem);
+
+
+//Tutor App
+
+$fName = read("FirstName");
+$lName = read("LastName");
+$sEmail = read("Email");
+$tNum = read("Telephone");
+$tGPA = read("GPA");
+$gradOrUgrad = read("typeStudent");
+$cKeys = read("CourseKeys");
+$tGTA = read("GTA");
+
+$sMon = read("MonTimes")
+$sTue = read("TueTimes")
+$sWed = read("WedTimes")
+$sThu = read("ThuTimes")
+$sFri = read("FriTimes")
+
+INSERT INTO Tutor (GT_ID, Phone, GPA)
+VALUES (GTID, tNum, tGPA)
+
+INSERT INTO TutorsCourse (TutorGT_ID, CourseKey, GTA)
+VALUES (GTID, cKey, tGTA)
+
+for each weekday day{
+	for each available timeslot that day time{
+		$sKey = generateSlotKey();
+		INSERT INTO TutorTimeSlot(SlotKey, TutorGT_ID, Time, Weekday, Semester)
+		VALUES(sKey, GTID, time, day, thisSem)
+		for each course cKey{
+			INSERT INTO HireTutor(UndergradGT_ID, CourseKey, SlotKey)
+			VALUES(GTID, cKey, sKey)
+		}
+	}
+}
+
+//Tutor Schedule
+
+$tGTID = read("TutorGTID");
+
+SELECT Weekday, Time, Name, Email, Course
+FROM HireTutor
+JOIN Student ON HireTutor.UndergradGT_ID = Student.GT_ID
+JOIN TutorTimeSlot ON TutorTime.SlotKey = HireTutor.SlotKey
+JOIN Course ON Course.CourseKey = HireTutor.CourseKey
+WHERE UndergradGT_ID = tGTID
+
+
+// Professor Recommendation
+
+$tGTID = read("StudentGTID");
+$DesEv = read("DescriptionEvaluation");
+$NumEv = read("NumericEvaluation");
+
+INSERT INTO Recommendation (TutorGT_ID, ProfessorGT_ID, Num_Evaluation, Desc_Evaluation)
+VALUES (tGTID, GTID, NumEv, DesEv)
+
+
+
+// Summary 1
+
+$Semesters = read("SelectedSemesters")
+
+SELECT CourseKey AS Course, Semester, COUNT(UndergradGT_ID) AS #Students, COUNT(TutorGT_ID) AS #Tutors
+FROM Course c
+JOIN TutorCourse tc ON tc.CourseKey = c.CourseKey
+JOIN Rating r ON r.TutorGT_ID = tc.TutorGT_ID
+WHERE r.Semester IN Semesters
+GROUP BY Semester
+ORDER BY CourseKey
+
+// Summary 2
+
+$Semesters = read("SelectedSemesters")
+
+SELECT CourseKey AS Course, Semester, COUNT(CASE WHEN GTA = "NO" THEN TutorGT_ID) AS TA, 
+	AVG(CASE WHEN GTA = "NO" THEN Num_Evaluation) AS Avg Rating, COUNT(CASE WHEN GTA = "YES" THEN TutorGT_ID) AS non TA, AVG(CASE WHEN GTA = "YES" THEN Num_Evaluation) AS Avg Rating
+FROM Course c
+JOIN TutorCourse tc On tc.CourseKey = c.CourseKey
+JOIN Rating r ON r.TutorGT_ID = tc.TutorGT_ID
+JOIN Tutor t ON t.TutorGT_ID = r.TutorGT_ID
+WHERE r.Semester IN Semesters
+GROUP BY Semester
+ORDER BY CourseKey 
