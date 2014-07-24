@@ -61,6 +61,87 @@
     <span id='register_username_errorloc' class='error'></span>
 </div>
 
+<br>Availability
+<div class="bodycontainer scrollable">
+<table class="table table-hover table-striped table-condensed table-scrollable">
+    <tr>
+            <th width="17%">Time</th>
+            <th width="17%">Monday</th>
+            <th width="17%">Tuesday</th>
+            <th width="17%">Wednesday</th>
+            <th width="17%">Thursday</th>
+            <th width="17%">Friday</th>
+        </tr>
+    <tbody>
+    <th width="17%">9am</th>
+    <th width="17%"><input type="checkbox" name="monday9AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday9AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday9AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday9AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday9AM" value="1"></th>
+    </tbody>
+    <tbody>
+    <th width="17%">10am</th>
+    <th width="17%"><input type="checkbox" name="monday10AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday10AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday10AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday10AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday10AM" value="1"></th>
+    </tbody>
+    <tbody>
+    <th width="17%">11am</th>
+    <th width="17%"><input type="checkbox" name="monday11AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday11AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday11AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday11AM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday11AM" value="1"></th>
+    </tbody>
+    <tbody>
+    <th width="17%">10pm</th>
+    <th width="17%"><input type="checkbox" name="monday12PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday12PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday12PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday12PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday12PM" value="1"></th>
+    </tbody>
+    <tbody>
+    <th width="17%">1pm</th>
+    <th width="17%"><input type="checkbox" name="monday1PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday1PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday1PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday1PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday1PM" value="1"></th>
+    </tbody>
+    <tbody>
+    <th width="17%">2pm</th>
+    <th width="17%"><input type="checkbox" name="monday2PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday2PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday2PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday2PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday2PM" value="1"></th>
+    </tbody>
+    <tbody>
+    <th width="17%">3pm</th>
+    <th width="17%"><input type="checkbox" name="monday3PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday3PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday3PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday3PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday3PM" value="1"></th>
+    </tbody>
+    <tbody>
+    <th width="17%">4pm</th>
+    <th width="17%"><input type="checkbox" name="monday4PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="tuesday4PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="wednesday4PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="thursday4PM" value="1"></th>
+    <th width="17%"><input type="checkbox" name="friday4PM" value="1"></th>
+    </tbody>
+</table>
+</div>
+<table class="table table-hover table-striped table-condensed">
+</table>
+</div>
+
 
 <div class='container'>
     <input type='submit' name='Submit' value='Submit' />
